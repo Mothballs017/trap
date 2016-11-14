@@ -18,6 +18,7 @@ public class CaveExplorer {
 			}
 		}
 		caves[0][2] = new EventRoom("This is the room where that guy with a tail met you.", new GameStartEvent());
+		caves[2][2] = new EventRoom("This is the room where that guy with a tail met you.", new EventNikitaAndMathew());
 		currentRoom = caves[0][1];
 		currentRoom.enter();
 		caves[0][1].setConnection(CaveRoom.EAST,caves[0][2],new Door());
