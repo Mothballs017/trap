@@ -1,48 +1,49 @@
 package mattCandAli;
 
-import java.util.Random;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class MatthewGrid {
 
-	//		create a grid 6 down and 7 across
+	//		create a grid 6 down and 7 across -done
 	//		4 in a row is winner
 	//		could set all open spaces to x, once used switch to o
-	//		randomly set who goes first. maybe 1-10, if >= 5, computer goes first
+	//		randomly set who goes first. maybe 1-10, if >= 5, computer goes first - done
 	//		player/computer names the column, not row. 
 	//		next open slot is filled by an o
 	//		once placed, check win conditions. horizontal, if 4 in a row, vertical, if 4 in a row, if diagonal 4 in a row
 	//		keep looping until a player wins
-
-
+	public static String[][] arr2D;
+	public static String[][] pic;
+	public static int i;
+	public static int j;
+	public static Scanner in;
 
 	public static void main(String[] args){
-		String[][] arr2D = new String[6][7];
-		boolean[][] bool2D = new boolean[6][7];
-		for(int row = 0; row < arr2D.length; row++){
-			for(int col = 0; col < arr2D[row].length; col++){
-				arr2D[row][col]=" x ";
+		pic = new String[6][7];
+		for(int row = 0; row < pic.length; row++){
+			for(int col = 0; col < pic[row].length; col++){
+				pic[row][col]=" x ";
 			}
 		}
-		
-		for(int row = 0;row < arr2D.length;row++){
-			for(int col = 0;col < arr2D[row].length;col++){
-				System.out.print(arr2D[row][col]);
-			}
-			System.out.println();
+		in = new Scanner(System.in);
+		if(generateRandomNumberBetween(2,1) >= 2){
+			pic[pic.length-1][generateRandomNumberBetween(pic.length,0)] = " o ";
 		}
-
+		printPic(pic);
 	}
 
-	public static int generateRandomNumberBetween(int max,int min){
+	private static int generateRandomNumberBetween(int max,int min){
 		int randomNum = min + (int)(Math.random() * ((max - min) + 1));
 		return randomNum;
 	}
-	
-	public static int goFirst(){
-		int player = 1;
-		int computer = 2;
-		int num = generateRandomNumberBetween(1,2);
-		if(num<=2)return computer;
-		else return player;
+
+	public static void printPic(String[][] pic){
+		for(int row = 0;row < pic.length;row++){
+			for(int col = 0;col < pic[row].length;col++){
+				System.out.print(pic[row][col]);
+			}
+			System.out.println();
+		}
 	}
 }
