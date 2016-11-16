@@ -6,7 +6,7 @@ public class Inventory {
 	private String map;
 	
 	public Inventory(){
-		hasMap = false;
+		hasMap = true;
 		updateMap();
 	}
 	public void updateMap() {
@@ -48,6 +48,7 @@ public class Inventory {
 			}//last of the 3 text lines
 		}//last row
 	}
+	
 	public String getDescription() {
 		if(hasMap){
 			return map;
