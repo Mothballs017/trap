@@ -6,7 +6,7 @@ public class Inventory {
 	private String map;
 	
 	public Inventory(){
-		hasMap = true;
+		hasMap = false;
 		updateMap();
 	}
 	public void updateMap() {
@@ -54,7 +54,7 @@ public class Inventory {
 			return map;
 		}
 		else{
-			return "there is nothing in your inventory.";
+			return "Your inventory is empty.";
 		}
 	}
 	public void setMap(boolean b) {
