@@ -48,12 +48,13 @@ public class Inventory {
 			}//last of the 3 text lines
 		}//last row
 	}
+	
 	public String getDescription() {
 		if(hasMap){
 			return map;
 		}
 		else{
-			return "there is nothing in your inventory.";
+			return "Your inventory is empty.";
 		}
 	}
 	public void setMap(boolean b) {
