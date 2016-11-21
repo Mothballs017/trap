@@ -6,7 +6,7 @@ public class Inventory {
 	private String map;
 	
 	public Inventory(){
-		hasMap = false;
+		hasMap = true;
 		updateMap();
 	}
 	public void updateMap() {

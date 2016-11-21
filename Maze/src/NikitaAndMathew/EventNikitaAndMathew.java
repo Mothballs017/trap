@@ -43,8 +43,67 @@ public class EventNikitaAndMathew implements Event {
 	}
 	
 	private void makeConnections() {
-		portals[0][0].setConnection(CaveRoom.EAST,portals[0][1],new Door());
-		
+		 //Room 1
+		 portals[0][0].setConnection(CaveRoom.EAST,portals[0][1],new Door());
+		 portals[0][0].setConnection(CaveRoom.SOUTH,portals[1][0],new Door());
+		 portals[0][1].setConnection(CaveRoom.SOUTH,portals[1][1],new Door());
+		 portals[1][0].setConnection(CaveRoom.EAST,portals[1][1],new Door());
+		 portals[1][1].setConnection(CaveRoom.SOUTH,portals[2][1],new Door());
+		 
+		 //Room 2
+		 portals[0][2].setConnection(CaveRoom.EAST,portals[0][3],new Door());
+		 portals[0][2].setConnection(CaveRoom.SOUTH,portals[1][2],new Door());
+		 portals[0][3].setConnection(CaveRoom.SOUTH,portals[1][3],new Door());
+		 portals[1][3].setConnection(CaveRoom.SOUTH,portals[2][3],new Door());
+		 portals[2][3].setConnection(CaveRoom.EAST,portals[2][4],new Door());
+		 portals[2][2].setConnection(CaveRoom.EAST,portals[2][3],new Door());
+		 
+		 //Room 3
+		 portals[0][4].setConnection(CaveRoom.SOUTH,portals[1][4],new Door());
+		 portals[1][4].setConnection(CaveRoom.EAST,portals[1][5],new Door());
+		 portals[0][5].setConnection(CaveRoom.SOUTH,portals[1][5],new Door());
+		 portals[0][5].setConnection(CaveRoom.EAST,portals[0][6],new Door());
+		 portals[1][5].setConnection(CaveRoom.EAST,portals[1][6],new Door());
+		 portals[1][6].setConnection(CaveRoom.EAST,portals[1][7],new Door());
+		 portals[0][7].setConnection(CaveRoom.SOUTH,portals[1][7],new Door());
+		 portals[0][7].setConnection(CaveRoom.EAST,portals[0][8],new Door());
+		 
+		 //Room 4
+		 portals[0][9].setConnection(CaveRoom.SOUTH,portals[1][9],new Door());
+		 portals[1][9].setConnection(CaveRoom.SOUTH,portals[2][9],new Door());
+		 portals[1][8].setConnection(CaveRoom.EAST,portals[1][9],new Door());
+		 portals[2][8].setConnection(CaveRoom.EAST,portals[2][9],new Door());
+		 portals[1][8].setConnection(CaveRoom.SOUTH,portals[2][8],new Door());
+		 portals[2][7].setConnection(CaveRoom.EAST,portals[2][8],new Door());
+		 
+		 //Room 5
+		 portals[3][9].setConnection(CaveRoom.SOUTH,portals[4][9],new Door());
+		 portals[3][8].setConnection(CaveRoom.SOUTH,portals[4][8],new Door());
+		 portals[3][8].setConnection(CaveRoom.EAST,portals[3][9],new Door());
+		 portals[4][8].setConnection(CaveRoom.EAST,portals[4][9],new Door());
+		 portals[4][6].setConnection(CaveRoom.EAST,portals[4][7],new Door());
+		 portals[4][7].setConnection(CaveRoom.EAST,portals[4][8],new Door());
+		 
+		 //Room 6
+		 portals[2][6].setConnection(CaveRoom.SOUTH,portals[3][6],new Door());
+		 portals[2][5].setConnection(CaveRoom.EAST,portals[2][6],new Door());
+		 portals[3][6].setConnection(CaveRoom.EAST,portals[3][7],new Door());
+		 
+		 //Room 7
+		 portals[4][2].setConnection(CaveRoom.EAST,portals[4][3],new Door());
+		 portals[3][3].setConnection(CaveRoom.SOUTH,portals[4][3],new Door());
+		 portals[3][3].setConnection(CaveRoom.EAST,portals[3][4],new Door());
+		 portals[3][4].setConnection(CaveRoom.EAST,portals[3][5],new Door());
+		 portals[4][4].setConnection(CaveRoom.EAST,portals[4][5],new Door());
+		 portals[3][4].setConnection(CaveRoom.SOUTH,portals[4][4],new Door());
+		 portals[3][5].setConnection(CaveRoom.SOUTH,portals[4][5],new Door());
+		 
+		 //Room 8
+		 portals[2][0].setConnection(CaveRoom.SOUTH,portals[3][0],new Door());
+		 portals[3][0].setConnection(CaveRoom.SOUTH,portals[4][0],new Door());
+		 portals[4][0].setConnection(CaveRoom.EAST,portals[4][1],new Door());
+		 portals[3][1].setConnection(CaveRoom.EAST,portals[3][2],new Door());
+		 portals[3][1].setConnection(CaveRoom.SOUTH,portals[4][1],new Door());
 	}
 
 	private static void makeMove() {
@@ -56,6 +115,8 @@ public class EventNikitaAndMathew implements Event {
 			currentPortalRoom.interpretInput(input);
 		}
 	}
+	
+	
 	
 	public void PortalInventory(){
 		hasPortalMap = false;
