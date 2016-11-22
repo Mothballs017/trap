@@ -2,7 +2,9 @@ package mattCandAli;
 
 import java.util.Scanner;
 
-public class MatthewGrid {
+import caveExplorer.Event;
+
+public class MatthewGrid implements Event {
 
 	//		create a grid 6 down and 7 across -done
 	//		4 in a row is winner 
@@ -231,5 +233,10 @@ public class MatthewGrid {
 			}
 		}
 		return win;
+	}
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		
 	}
 }

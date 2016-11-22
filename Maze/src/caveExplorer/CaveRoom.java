@@ -41,7 +41,7 @@ public class CaveRoom {
 				doors[EAST] == null &&
 				doors[SOUTH] == null &&
 				doors[WEST] == null){
-			directions = "\n\nThis is a room with no exit. You will die here.";		
+			directions = "\n\nThis is a room with no exit. You will die here. Sorry, you thought you would actually escape.";		
 		}else{
 			for(int dir = 0; dir < doors.length; dir++){
 				if(doors[dir] != null){
