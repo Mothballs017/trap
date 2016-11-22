@@ -18,14 +18,13 @@ public class MatthewGrid {
 	final static int WIDTH = 6;
 	final static int HEIGHT = 7;
 	final static int LASTROW = WIDTH -1;
-	public static char[][] board = new char[WIDTH][HEIGHT];;
-	public static String[] columnKey = {"1","2","3","4","5","6","7"};
+	public static char[][] board = new char[WIDTH][HEIGHT];
 	public static boolean gameLoop = true;
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args){
 		generateBoard();
-		System.out.println("Beat this game of Connect 4 to pass! Your piece will be an Select a column by choosing its corresponding indeo.\n 01234567");
+		System.out.println("Beat this game of Connect 4 to pass! Your piece will be an Select a column by choosing its corresponding indeo.\n 0123456");
 		printBoard(board);
 		System.out.println("You can skip this game by entering the passphrase: HANLEY");
 		if(scanner.nextLine().equals("HANLEY")){
@@ -75,7 +74,7 @@ public class MatthewGrid {
 		boolean deciding = true;
 		while(deciding){
 			if(col > WIDTH){
-				System.out.println("That's not a valid column");
+				System.out.println("That's not a valid column.");
 				deciding = false;
 			}
 			if(board[LASTROW][col] == '-'){ 
@@ -83,14 +82,13 @@ public class MatthewGrid {
 				deciding = false;
 			}
 			else if(board[LASTROW][col] == 'o' || board[LASTROW][col] == 'x'){ 
-				if(board[LASTROW - counter][col] == '-'){ 
-					board[LASTROW - counter][col] = 'o';
+				if(board[LASTROW - counter+1][col] == '-'){ 
+					board[LASTROW - counter+1][col] = 'o';
 					deciding = false;
 				}
 			}
 			if(counter == WIDTH){ 
 				System.out.println("Can't drop a piece here.");
-				deciding = false;
 			}
 			counter += 1; 
 		}  

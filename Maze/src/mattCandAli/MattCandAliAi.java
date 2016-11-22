@@ -11,7 +11,6 @@ public class MattCandAliAi {
 		while(deciding){
 			if(col > MatthewGrid.WIDTH){
 				System.out.println("That's not a valid column");
-				deciding = false;
 			}
 			if(MatthewGrid.board[MatthewGrid.LASTROW][col] == '-'){
 				System.out.println("Computer dropped a piece in column "+col+".");
@@ -19,9 +18,9 @@ public class MattCandAliAi {
 				deciding = false;
 			}
 			else if(MatthewGrid.board[MatthewGrid.LASTROW][col] == 'o' || MatthewGrid.board[MatthewGrid.LASTROW][col] == 'x'){ 
-				if(MatthewGrid.board[MatthewGrid.LASTROW - counter][col] == '-'){ 
+				if(MatthewGrid.board[MatthewGrid.LASTROW - counter+1][col] == '-'){ 
 					System.out.println("Computer dropped a piece in column "+col+".");
-					MatthewGrid.board[MatthewGrid.LASTROW - counter][col] = 'x';
+					MatthewGrid.board[MatthewGrid.LASTROW - counter+1][col] = 'x';
 					deciding = false;
 				}
 			}
