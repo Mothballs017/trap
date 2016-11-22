@@ -34,7 +34,7 @@ public class CaveExplorer {
 			System.out.println(currentRoom.getDescription());
 			System.out.println("What would you like to do?");
 			String input = in.nextLine();
-			currentRoom.interpretInput(input);
+			currentRoom.interpretInput(input, true);
 		}
 	}
 

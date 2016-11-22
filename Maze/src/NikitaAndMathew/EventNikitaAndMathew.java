@@ -36,6 +36,7 @@ public class EventNikitaAndMathew implements Event {
 		currentPortalRoom = portals[0][0];
 		currentPortalRoom.enter();
 		makeConnections();
+		MapNikita.darkenMap();
 		PortalInventory(); //Makes portal map invisible by default and creates the map.
 		setPortalMap(true); //Allows the portal map to become visible to the user.
 		
@@ -112,7 +113,7 @@ public class EventNikitaAndMathew implements Event {
 			System.out.println(currentPortalRoom.getDescription());
 			System.out.println("You: Where should I go?");
 			String input = in.nextLine();
-			currentPortalRoom.interpretInput(input);
+			currentPortalRoom.interpretInput(input, false);
 		}
 	}
 	
@@ -150,7 +151,7 @@ public class EventNikitaAndMathew implements Event {
 			return "Inventory: Empty";
 		}
 	}
-	public void updatePortalMap() {
+	public static void updatePortalMap() {
 		PortalMap = " ";
 		for(int i = 0; i < portals[0].length - 1; i++){
 			PortalMap += "____";//4

@@ -1,5 +1,7 @@
 package caveExplorer;
 
+import NikitaAndMathew.EventNikitaAndMathew;
+
 public class CaveRoom {
 
 	//	"final" never changes
@@ -98,7 +100,7 @@ public class CaveRoom {
 	public void setDescription(String string) {
 		description = string;
 	}
-	public void interpretInput(String input) {
+	public void interpretInput(String input, boolean cave) {
 		while(!isValid(input)){
 			System.out.println("You can only enter "+"'w','a','s', or 'd'.");
 			input = CaveExplorer.in.nextLine();
@@ -111,7 +113,12 @@ public class CaveRoom {
 				break;
 			}
 		}
-		goToRoom(indexFound);
+		if(cave){
+			goToRoom(indexFound);
+		}
+		else{
+			goToPortalRoom(indexFound);
+		}
 	}
 
 	public void goToRoom(int direction){
@@ -120,6 +127,15 @@ public class CaveRoom {
 			CaveExplorer.currentRoom = borderingRooms[direction];
 			CaveExplorer.currentRoom.enter();
 			CaveExplorer.inventory.updateMap();
+		}
+	}
+	
+	public void goToPortalRoom(int direction){
+		if(borderingRooms[direction] != null && doors[direction].isOpen()){
+			EventNikitaAndMathew.currentPortalRoom.leave();
+			EventNikitaAndMathew.currentPortalRoom = borderingRooms[direction];
+			EventNikitaAndMathew.currentPortalRoom.enter();
+			EventNikitaAndMathew.updatePortalMap();
 		}
 	}
 	
