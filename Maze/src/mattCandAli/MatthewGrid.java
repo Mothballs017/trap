@@ -73,9 +73,9 @@ public class MatthewGrid {
 		int col = scanner.nextInt();
 		boolean deciding = true;
 		while(deciding){
-			if(col > WIDTH){
-				System.out.println("That's not a valid column.");
-				deciding = false;
+			while(col > WIDTH || col < WIDTH - WIDTH){
+				System.out.println("That's not a valid column, enter numbers between 0-6");
+				col = scanner.nextInt();
 			}
 			if(board[LASTROW][col] == '-'){ 
 				board[LASTROW][col] = 'o';
@@ -91,7 +91,9 @@ public class MatthewGrid {
 				System.out.println("Can't drop a piece here.");
 			}
 			counter += 1; 
+			
 		}  
+		
 	}
 
 	private static boolean checkPlayerWin() {

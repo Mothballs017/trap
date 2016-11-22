@@ -9,8 +9,8 @@ public class MattCandAliAi {
 		int col = randInt(MatthewGrid.WIDTH-1,MatthewGrid.HEIGHT-1);
 		boolean deciding = true;
 		while(deciding){
-			if(col > MatthewGrid.WIDTH){
-				System.out.println("That's not a valid column");
+			while(col > MatthewGrid.WIDTH || col < MatthewGrid.WIDTH-MatthewGrid.WIDTH){
+				col = randInt(MatthewGrid.WIDTH-1,MatthewGrid.HEIGHT-1);
 			}
 			if(MatthewGrid.board[MatthewGrid.LASTROW][col] == '-'){
 				System.out.println("Computer dropped a piece in column "+col+".");
@@ -25,7 +25,6 @@ public class MattCandAliAi {
 				}
 			}
 			if(counter == MatthewGrid.WIDTH){ 
-				System.out.println("Can't drop a piece here.");
 				deciding = false;
 			}
 			counter += 1; 
