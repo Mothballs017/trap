@@ -1,6 +1,7 @@
 package caveExplorer;
 
 import NikitaAndMathew.EventNikitaAndMathew;
+import NikitaAndMathew.MapNikita;
 
 public class CaveRoom {
 
@@ -135,7 +136,7 @@ public class CaveRoom {
 			EventNikitaAndMathew.currentPortalRoom.leave();
 			EventNikitaAndMathew.currentPortalRoom = borderingRooms[direction];
 			EventNikitaAndMathew.currentPortalRoom.enter();
-			EventNikitaAndMathew.updatePortalMap();
+			MapNikita.updatePortalMap();
 		}
 	}
 	
