@@ -10,7 +10,7 @@ import caveExplorer.Event;
 public class EventNikitaAndMathew implements Event {
 	
 	private static boolean hasPortalMap;
-	private static String PortalMap;
+	public static String PortalMap;
 	public static CaveRoom portals[][];
 	public static CaveRoom currentPortalRoom;
 	public static Scanner in;
@@ -34,9 +34,10 @@ public class EventNikitaAndMathew implements Event {
 		}
 		readSequence(SEQ_1);
 		currentPortalRoom = portals[0][0];
-		currentPortalRoom.enter();
 		makeConnections();
 		MapNikita.darkenMap();
+		currentPortalRoom.enter();
+		MapNikita.uncoverMap();
 		PortalInventory(); //Makes portal map invisible by default and creates the map.
 		setPortalMap(true); //Allows the portal map to become visible to the user.
 		
@@ -121,7 +122,7 @@ public class EventNikitaAndMathew implements Event {
 	
 	public void PortalInventory(){
 		hasPortalMap = false;
-		updatePortalMap();
+		createPortalMap();
 	}
 
 	public static void readSequence(String[] seq) {
@@ -151,7 +152,7 @@ public class EventNikitaAndMathew implements Event {
 			return "Inventory: Empty";
 		}
 	}
-	public static void updatePortalMap() {
+	public static void createPortalMap() {
 		PortalMap = " ";
 		for(int i = 0; i < portals[0].length - 1; i++){
 			PortalMap += "____";//4
@@ -171,14 +172,26 @@ public class EventNikitaAndMathew implements Event {
 						text += "|";
 					}
 					if(i == 0){
-						text += "   ";//3
+						if(cr.getContents() == "X"){
+							text += "   ";//3
+						}else{
+							text += cr.getContents()+cr.getContents()+cr.getContents();
+						}
 					}
 					else if(i == 1){
-						text += " "+cr.getContents()+" ";
+						if(cr.getContents() == "X"){
+							text += " "+cr.getContents()+" ";
+						}else{
+							text += cr.getContents()+cr.getContents()+cr.getContents();
+						}
 					}
 					else if(i == 2){
 						if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen()){
-							text += "   ";//3
+							if(cr.getContents() == "X"){
+								text += "   ";//3
+							}else{
+								text += cr.getContents()+cr.getContents()+cr.getContents();
+							}
 						}
 						else{
 							text += "___";//3
