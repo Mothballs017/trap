@@ -20,11 +20,9 @@ public class CaveExplorer {
 			}
 		}
 		currentRoom = caves[0][1];
-		//caves[0][1] = new EventRoom("You wake up in a closed room. There is a portal in front of you.", new GameStartEvent());
 		currentRoom.enter();
-		//There is a door to the far end of the room, but there appear to be obstacles in your way."
-		//caves[0][2] = new EventRoom("You fell into another dimension.", new EventNikitaAndMathew());
-		//caves[1][2] = new EventRoom("Exiting the portal dimension, you find yourself pitted against Hanley, connect 4 master and the only obstacle between you and the far wall.", new MatthewGrid());
+		caves[0][2] = new EventRoom("You fell into another dimension.", new EventNikitaAndMathew());
+		caves[1][2] = new EventRoom("Exiting the portal dimension, you find yourself pitted against Hanley, connect 4 master and the only obstacle between you and the far wall.", new MatthewGrid());
 		caves[2][2] = new EventRoom("", new GameStartEvent());
 		caves[0][1].setConnection(CaveRoom.EAST,caves[0][2],new Door());
 		caves[0][2].setConnection(CaveRoom.SOUTH,caves[1][2],new Door());
