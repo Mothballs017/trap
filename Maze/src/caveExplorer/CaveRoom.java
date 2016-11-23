@@ -136,6 +136,12 @@ public class CaveRoom {
 			EventNikitaAndMathew.currentPortalRoom.leave();
 			EventNikitaAndMathew.currentPortalRoom = borderingRooms[direction];
 			EventNikitaAndMathew.currentPortalRoom.enter();
+			if(PortalsMatthew.isPortalLocation()){
+				EventNikitaAndMathew.currentPortalRoom.leave();
+				System.out.println("You have just been mysteriously teleported.");
+				PortalsMatthew.teleportToPortalLocation();
+				EventNikitaAndMathew.currentPortalRoom.enter();
+			}
 			MapNikita.updatePortalMap();
 		}
 	}
