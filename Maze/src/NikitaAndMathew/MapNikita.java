@@ -3,6 +3,9 @@ package NikitaAndMathew;
 import caveExplorer.CaveRoom;
 
 public class MapNikita {
+	
+	public static final String[] SEQ_PORTAL = {
+			"You: 'Alright, a portal, lets go through it!'"};
 
 	public static void darkenMap() {
 		for(int i = 0; i < EventNikitaAndMathew.portals.length; i++){
@@ -20,6 +23,28 @@ public class MapNikita {
 			}
 		}
 	}
+	
+//	public static void checkForPortal(){
+//		for(int i = 0; i < PortalsMatthew.portalLocationsSetOne.length - 1; i++){
+//			if(EventNikitaAndMathew.currentPortalRoom.getRow() == PortalsMatthew.portalLocationsSetOne[i][0] && EventNikitaAndMathew.currentPortalRoom.col == PortalsMatthew.portalLocationsSetOne[i][1]){
+//				EventNikitaAndMathew.currentPortalRoom.setDefaultContents(Integer.toString(i));
+//				EventNikitaAndMathew.currentPortalRoom.enter();
+//				updatePortalMap();
+//				EventNikitaAndMathew.readSequence(SEQ_PORTAL);
+//				EventNikitaAndMathew.currentPortalRoom = EventNikitaAndMathew.portals[PortalsMatthew.portalLocationsSetTwo[i][0]][PortalsMatthew.portalLocationsSetTwo[i][1]];
+//				break;
+//			}
+//			if(EventNikitaAndMathew.currentPortalRoom.row == PortalsMatthew.portalLocationsSetTwo[i][0] && EventNikitaAndMathew.currentPortalRoom.col == PortalsMatthew.portalLocationsSetTwo[i][1]){
+//				EventNikitaAndMathew.currentPortalRoom.setDefaultContents(Integer.toString(i));
+//				EventNikitaAndMathew.currentPortalRoom.enter();
+//				updatePortalMap();
+//				EventNikitaAndMathew.readSequence(SEQ_PORTAL);
+//				EventNikitaAndMathew.currentPortalRoom = EventNikitaAndMathew.portals[PortalsMatthew.portalLocationsSetOne[i][0]][PortalsMatthew.portalLocationsSetOne[i][1]];
+//				break;
+//			}
+//		}
+//	}
+	
 	public static void updatePortalMap() {
 		EventNikitaAndMathew.PortalMap = " ";
 		for(int i = 0; i < EventNikitaAndMathew.portals[0].length - 1; i++){

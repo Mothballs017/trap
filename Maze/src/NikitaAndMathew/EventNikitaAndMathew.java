@@ -184,7 +184,7 @@ public class EventNikitaAndMathew implements Event {
 						}else{
 							text += cr.getContents()+cr.getContents()+cr.getContents();
 						}
-					}
+					}		
 					else if(i == 2){
 						if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen()){
 							if(cr.getContents() == "X"){

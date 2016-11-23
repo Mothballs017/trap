@@ -2,6 +2,7 @@ package caveExplorer;
 
 import NikitaAndMathew.EventNikitaAndMathew;
 import NikitaAndMathew.MapNikita;
+import NikitaAndMathew.PortalsMatthew;
 
 public class CaveRoom {
 
@@ -20,10 +21,13 @@ public class CaveRoom {
 	
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
+	public static int row;
+	public static int col;
 
 
 	public CaveRoom(String description){
 		this.description = description;
+				
 		setDefaultContents(" ");
 		contents = defaultContents;
 
@@ -135,7 +139,9 @@ public class CaveRoom {
 		if(borderingRooms[direction] != null && doors[direction].isOpen()){
 			EventNikitaAndMathew.currentPortalRoom.leave();
 			EventNikitaAndMathew.currentPortalRoom = borderingRooms[direction];
+			
 			EventNikitaAndMathew.currentPortalRoom.enter();
+			
 			MapNikita.updatePortalMap();
 		}
 	}
@@ -147,6 +153,11 @@ public class CaveRoom {
 			if(key.equals(lc))return true;
 		}
 		return false;
+	}
+
+	public int getRow() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
