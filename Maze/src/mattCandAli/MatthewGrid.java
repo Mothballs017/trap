@@ -2,6 +2,7 @@ package mattCandAli;
 
 import java.util.Scanner;
 
+import caveExplorer.CaveExplorer;
 import caveExplorer.Event;
 
 public class MatthewGrid implements Event {
@@ -21,16 +22,32 @@ public class MatthewGrid implements Event {
 	final static int HEIGHT = 7;
 	final static int LASTROW = WIDTH -1;
 	public static char[][] board = new char[WIDTH][HEIGHT];
+	public static final String[] SEQ_1 = {
+			"You: 'What now?'",
+			"Hanley: 'HA! You thought you would actually escape! You're stuck in here with me!'",
+			"You: 'Oh...what do I have to do to escape?'",
+			"Hanley: '...Were you not paying attention? You can't leave! And neither can I! Wanna play a game to pass the remainder of your days?'",
+			"You: ...",
+			"Hanley: ...",
+			"You: ...",
+			"Hanley: 'What, you got something better to do?'"
+	};
 	public static boolean gameLoop = true;
 	public static Scanner scanner = new Scanner(System.in);
-
-	public static void main(String[] args){
+//
+//	public static void main(String[] args){
+//		
+//	}
+	public void play() {
+		talkSequence(SEQ_1);
 		generateBoard();
 		System.out.println("Beat this game of Connect 4 to pass! Your piece will be an Select a column by choosing its corresponding indeo.\n 0123456");
 		printBoard(board);
 		System.out.println("You can skip this game by entering the passphrase: HANLEY");
 		if(scanner.nextLine().equals("HANLEY")){
 			gameLoop = false;
+//			CaveExplorer.currentRoom = CaveExplorer.caves[2][2];
+//			CaveExplorer.currentRoom.enter();
 		}
 		while(gameLoop){
 			playerSelect();
@@ -42,9 +59,16 @@ public class MatthewGrid implements Event {
 			MattCandAliAi.computerSelect();
 			printBoard(board);
 			if(MattCandAliAi.checkComputerWin() == true){
-	              gameLoop = false;
-	              break;
-	        }
+				gameLoop = false;
+				break;
+			}
+		}
+	}
+	private static void talkSequence(String[] seq) {
+		for(int i = 0; i < seq.length; i++){
+			CaveExplorer.print(seq[i]);
+			CaveExplorer.print("Press Enter to Continue");
+			CaveExplorer.in.nextLine();
 		}
 	}
 	private static void generateBoard() {
@@ -93,9 +117,9 @@ public class MatthewGrid implements Event {
 				System.out.println("Can't drop a piece here.");
 			}
 			counter += 1; 
-			
+
 		}  
-		
+
 	}
 
 	private static boolean checkPlayerWin() {
@@ -233,10 +257,5 @@ public class MatthewGrid implements Event {
 			}
 		}
 		return win;
-	}
-	@Override
-	public void play() {
-		// TODO Auto-generated method stub
-		
 	}
 }

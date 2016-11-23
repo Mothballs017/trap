@@ -21,9 +21,6 @@ public class CaveRoom {
 	
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
-	public static int row;
-	public static int col;
-
 
 	public CaveRoom(String description){
 		this.description = description;
@@ -46,7 +43,7 @@ public class CaveRoom {
 				doors[EAST] == null &&
 				doors[SOUTH] == null &&
 				doors[WEST] == null){
-			directions = "\n\nThis is a room with no exit. You will die here. Sorry, you thought you would actually escape.";		
+			directions = "\n\nThis is a room with no exit.";		
 		}else{
 			for(int dir = 0; dir < doors.length; dir++){
 				if(doors[dir] != null){
@@ -141,7 +138,12 @@ public class CaveRoom {
 			EventNikitaAndMathew.currentPortalRoom = borderingRooms[direction];
 			
 			EventNikitaAndMathew.currentPortalRoom.enter();
-			
+			if(PortalsMatthew.isPortalLocation()){
+				EventNikitaAndMathew.currentPortalRoom.leave();
+				System.out.println("You have just been mysteriously teleported.");
+				PortalsMatthew.teleportToPortalLocation();
+				EventNikitaAndMathew.currentPortalRoom.enter();
+			}
 			MapNikita.updatePortalMap();
 		}
 	}
