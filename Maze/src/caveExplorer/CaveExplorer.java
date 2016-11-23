@@ -19,15 +19,14 @@ public class CaveExplorer {
 				caves[row][col] = new CaveRoom("This cave has coordinates "+row+","+col);
 			}
 		}
-//		caves[0][2] = new EventRoom("This is the room where that guy with a tail met you.", new GameStartEvent());
 		currentRoom = caves[0][1];
 		currentRoom.enter();
-		//There is a door to the far end of the room, but there appear to be obstacles in your way."
 		caves[0][2] = new EventRoom("You fell into another dimension.", new EventNikitaAndMathew());
 		caves[1][2] = new EventRoom("Exiting the portal dimension, you find yourself pitted against Hanley, connect 4 master and the only obstacle between you and the far wall.", new MatthewGrid());
+		caves[2][2] = new EventRoom("", new GameStartEvent());
 		caves[0][1].setConnection(CaveRoom.EAST,caves[0][2],new Door());
 		caves[0][2].setConnection(CaveRoom.SOUTH,caves[1][2],new Door());
-		caves[1][2].setConnection(CaveRoom.SOUTH,caves[1][2],new Door());
+		caves[1][2].setConnection(CaveRoom.SOUTH,caves[2][2],new Door());
 		inventory = new Inventory();
 		startExploring(); 
 	}
