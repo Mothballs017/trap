@@ -2,7 +2,6 @@ package caveExplorer;
 
 import NikitaAndMathew.EventNikitaAndMathew;
 import NikitaAndMathew.MapNikita;
-import NikitaAndMathew.PortalsMatthew;
 
 public class CaveRoom {
 
@@ -136,14 +135,9 @@ public class CaveRoom {
 		if(borderingRooms[direction] != null && doors[direction].isOpen()){
 			EventNikitaAndMathew.currentPortalRoom.leave();
 			EventNikitaAndMathew.currentPortalRoom = borderingRooms[direction];
-			
 			EventNikitaAndMathew.currentPortalRoom.enter();
-			if(PortalsMatthew.isPortalLocation()){
-				EventNikitaAndMathew.currentPortalRoom.leave();
-				System.out.println("You have just been mysteriously teleported.");
-				PortalsMatthew.teleportToPortalLocation();
-				EventNikitaAndMathew.currentPortalRoom.enter();
-			}
+			MapNikita.checkForPortal();
+			MapNikita.checkForEnd();
 			MapNikita.updatePortalMap();
 		}
 	}

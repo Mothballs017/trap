@@ -6,11 +6,19 @@ public class MapNikita {
 	
 	public static final String[] SEQ_PORTAL = {
 			"You: 'Alright, a portal, lets go through it!'"};
+	
+	public static final String[] SEQ_END = {
+	"You: 'I did it! I found my way back!'"};
+	
+	private static int endRow;
+	private static int endCol;
+
+	public static boolean foundEnd;
 
 	public static void darkenMap() {
 		for(int i = 0; i < EventNikitaAndMathew.portals.length; i++){
 			for(int j = 0; j < EventNikitaAndMathew.portals[0].length; j++){
-				EventNikitaAndMathew.portals[i][j].setDefaultContents("#");
+				EventNikitaAndMathew.portals[i][j].setDefaultContents("/");
 				EventNikitaAndMathew.portals[i][j].leave();
 			}
 		}
@@ -24,40 +32,43 @@ public class MapNikita {
 		}
 	}
 	
-//	public static void checkForPortal(){
-//		for(int i = 0; i < PortalsMatthew.portalLocationsSetOne.length - 1; i++){
-//			if(EventNikitaAndMathew.currentPortalRoom.getRow() == PortalsMatthew.portalLocationsSetOne[i][0] && EventNikitaAndMathew.currentPortalRoom.col == PortalsMatthew.portalLocationsSetOne[i][1]){
-//				EventNikitaAndMathew.currentPortalRoom.setDefaultContents(Integer.toString(i));
-//				EventNikitaAndMathew.currentPortalRoom.enter();
-//				updatePortalMap();
-//				EventNikitaAndMathew.readSequence(SEQ_PORTAL);
-//				EventNikitaAndMathew.currentPortalRoom = EventNikitaAndMathew.portals[PortalsMatthew.portalLocationsSetTwo[i][0]][PortalsMatthew.portalLocationsSetTwo[i][1]];
-//				break;
-//			}
-//			if(EventNikitaAndMathew.currentPortalRoom.row == PortalsMatthew.portalLocationsSetTwo[i][0] && EventNikitaAndMathew.currentPortalRoom.col == PortalsMatthew.portalLocationsSetTwo[i][1]){
-//				EventNikitaAndMathew.currentPortalRoom.setDefaultContents(Integer.toString(i));
-//				EventNikitaAndMathew.currentPortalRoom.enter();
-//				updatePortalMap();
-//				EventNikitaAndMathew.readSequence(SEQ_PORTAL);
-//				EventNikitaAndMathew.currentPortalRoom = EventNikitaAndMathew.portals[PortalsMatthew.portalLocationsSetOne[i][0]][PortalsMatthew.portalLocationsSetOne[i][1]];
-//				break;
-//			}
-//		}
-//	}
+	public static void checkForPortal(){
+		if(PortalsMatthew.isPortalLocation()){
+			EventNikitaAndMathew.currentPortalRoom.setDefaultContents("O");
+			MapNikita.updatePortalMap();
+			System.out.println(EventNikitaAndMathew.getDescription());
+			EventNikitaAndMathew.readSequence(MapNikita.SEQ_PORTAL);
+			EventNikitaAndMathew.currentPortalRoom.leave();
+			PortalsMatthew.teleportToPortalLocation();
+			EventNikitaAndMathew.currentPortalRoom.setDefaultContents("O");
+			EventNikitaAndMathew.currentPortalRoom.enter();
+		}
+	}
+	
+	public static void checkForEnd(){
+		endRow = 2;
+		endCol = 0;
+		
+		if(EventNikitaAndMathew.currentPortalRoom == EventNikitaAndMathew.portals[endRow][endCol]){
+			EventNikitaAndMathew.currentPortalRoom.setDefaultContents("O");
+			MapNikita.updatePortalMap();
+			System.out.println(EventNikitaAndMathew.getDescription());
+			EventNikitaAndMathew.readSequence(MapNikita.SEQ_END);
+			EventNikitaAndMathew.currentPortalRoom.leave();
+			foundEnd = true;
+		}
+	}
 	
 	public static void updatePortalMap() {
 		EventNikitaAndMathew.PortalMap = " ";
 		for(int i = 0; i < EventNikitaAndMathew.portals[0].length - 1; i++){
-			EventNikitaAndMathew.PortalMap += "____";//4
+			EventNikitaAndMathew.PortalMap += "____";
 		}
-		EventNikitaAndMathew.PortalMap += "___\n";//3
+		EventNikitaAndMathew.PortalMap += "___\n";
 		for(CaveRoom[] row: EventNikitaAndMathew.portals){
-			//3 rows of text
 			for(int i = 0; i < 3; i++){
-				//a line of text for each room
 				String text = "";
 				for(CaveRoom cr: row){
-					//text = "|";
 					if(cr.getDoor(CaveRoom.WEST) != null && cr.getDoor(CaveRoom.WEST).isOpen()){
 						text += " ";
 					}
@@ -66,35 +77,41 @@ public class MapNikita {
 					}
 					if(i == 0){
 						if(cr.getContents() == "X"){
-							text += "   ";//3
-						}else{
+							text += "   ";
+						}
+						else{
+							if(cr.getContents() == "O"){
+								text += " _ ";
+							}else{
 							text += cr.getContents()+cr.getContents()+cr.getContents();
+							}
 						}
 					}
 					else if(i == 1){
 						if(cr.getContents() == "X"){
 							text += " "+cr.getContents()+" ";
-						}else{
+						}
+						else{
+							if(cr.getContents() == "O"){
+								text += "("+cr.getContents()+")";
+							}else{
 							text += cr.getContents()+cr.getContents()+cr.getContents();
+							}
 						}
 					}
 					else if(i == 2){
 						if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen()){
-							if(cr.getContents() == "X"){
-								text += "   ";//3
-							}else{
-								text += cr.getContents()+cr.getContents()+cr.getContents();
-							}
+							text += "   ";
 						}
 						else{
-							text += "___";//3
+							text += "___";
 						}
 					}
-				}//last cave room in the row
+				}
 				text += "|";
 				EventNikitaAndMathew.PortalMap += text+"\n";
-			}//last of the 3 text lines
-		}//last row
+			}
+		}
 	}
 
 }

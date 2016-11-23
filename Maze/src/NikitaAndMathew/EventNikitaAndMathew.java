@@ -40,7 +40,7 @@ public class EventNikitaAndMathew implements Event {
 		MapNikita.uncoverMap();
 		PortalInventory(); //Makes portal map invisible by default and creates the map.
 		setPortalMap(true); //Allows the portal map to become visible to the user.
-		
+		System.out.println("Cheat Code: 'SKIP'");
 		makeMove(); //Asks for you to make your next move and shows the portal map.
 	}
 	
@@ -111,9 +111,16 @@ public class EventNikitaAndMathew implements Event {
 	private static void makeMove() {
 		while(true){
 			System.out.println(getDescription());
+			if(MapNikita.foundEnd){
+				break;
+			}
 			System.out.println(currentPortalRoom.getDescription());
 			System.out.println("You: Where should I go?");
 			String input = in.nextLine();
+			if(input.equals("SKIP")){
+				System.out.println("You just skipped the portal event!");
+				break;
+			}
 			currentPortalRoom.interpretInput(input, false);
 		}
 	}
@@ -155,16 +162,13 @@ public class EventNikitaAndMathew implements Event {
 	public static void createPortalMap() {
 		PortalMap = " ";
 		for(int i = 0; i < portals[0].length - 1; i++){
-			PortalMap += "____";//4
+			PortalMap += "____";
 		}
-		PortalMap += "___\n";//3
+		PortalMap += "___\n";
 		for(CaveRoom[] row: portals){
-			//3 rows of text
 			for(int i = 0; i < 3; i++){
-				//a line of text for each room
 				String text = "";
 				for(CaveRoom cr: row){
-					//text = "|";
 					if(cr.getDoor(CaveRoom.WEST) != null && cr.getDoor(CaveRoom.WEST).isOpen()){
 						text += " ";
 					}
@@ -173,7 +177,7 @@ public class EventNikitaAndMathew implements Event {
 					}
 					if(i == 0){
 						if(cr.getContents() == "X"){
-							text += "   ";//3
+							text += "   ";
 						}else{
 							text += cr.getContents()+cr.getContents()+cr.getContents();
 						}
@@ -188,19 +192,19 @@ public class EventNikitaAndMathew implements Event {
 					else if(i == 2){
 						if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen()){
 							if(cr.getContents() == "X"){
-								text += "   ";//3
+								text += "   ";
 							}else{
 								text += cr.getContents()+cr.getContents()+cr.getContents();
 							}
 						}
 						else{
-							text += "___";//3
+							text += "___";
 						}
 					}
-				}//last cave room in the row
+				}
 				text += "|";
 				PortalMap += text+"\n";
-			}//last of the 3 text lines
-		}//last row
+			}
+		}
 	}
 }
