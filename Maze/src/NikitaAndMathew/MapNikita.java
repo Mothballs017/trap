@@ -100,15 +100,24 @@ public class MapNikita {
 						}
 					}
 					else if(i == 2){
-						if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen()){
-							text += "   ";
+						if(cr.getContents() == "X"){
+							if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen()){
+								text += "   ";
+							}else{
+								text += "___";
+							}
+						}else{
+							text += "///";
 						}
-						else{
-							text += "___";
-						}
+						
 					}
 				}
-				text += "|";
+				if(cr.getContents() == "X"){
+					text += "|";
+				}else{
+					text += "/";
+				}
+				
 				EventNikitaAndMathew.PortalMap += text+"\n";
 			}
 		}
